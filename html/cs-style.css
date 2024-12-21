@@ -232,6 +232,7 @@ body {
     }
 }
 
+/* Dark Mode Styles */
 .dark-mode {
     background-color: #1e1e1e;
     color: #f4f4f4;
@@ -259,6 +260,7 @@ body {
     filter: brightness(0) invert(1);
 }
 
+/* Dark mode button */
 .dark-mode-button {
     position: fixed;
     top: 20px;

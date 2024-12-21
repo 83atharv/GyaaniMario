@@ -20,19 +20,20 @@ backgroundMusic.volume = 0.8;
 
 
 const encouragingMessages = [
-    "Finance is the study of managing money and investments. It involves budgeting, saving, investing, and analyzing markets to achieve financial goals.",
-    "A budget is a financial plan that outlines income and expenditures over a specified period.",
-    "Saving is the act of setting aside money for future use. It helps prepare for unexpected expenses and achieve financial goals.",
-    "A savings account allows you to deposit money, earn interest, and access funds easily, whereas a checking account is used for daily transactions like paying bills.",
-    "Credit allows individuals to borrow money to make purchases with an agreement to pay back over time, often with interest.",
-    "A loan is borrowed money that must be repaid with interest, which is the fee for borrowing the money.",
-    "Investment risk refers to the uncertainty of earning a return on an investment. The higher the risk, the higher the potential return, and vice versa.",
-    "Inflation is the rise in prices over time, decreasing the purchasing power of money.",
-    "An investment is the act of allocating money in the hope that it will generate income or appreciate over time.",
-    "The stock market allows individuals to buy and sell shares of companies. Stock prices fluctuate based on company performance and market conditions.",
-    "Diversification is the strategy of spreading investments across different assets to reduce risk.",
-    "Compound interest is the interest on both the initial principal and the accumulated interest from previous periods."
+    "Computer Science is the study of algorithms, data structures, and computational systems. It involves coding, problem-solving, and analyzing systems to achieve computational goals.",
+    "A program is a set of instructions that a computer follows to perform a task or solve a problem over a specified period.",
+    "Debugging is the act of identifying and fixing errors in code to ensure a program runs as expected and functions properly.",
+    "A data structure allows you to organize and store data in ways that optimize access and manipulation, whereas an algorithm is a step-by-step procedure to solve a problem.",
+    "Virtualization allows developers to run multiple operating systems and applications on a single physical machine with isolated environments.",
+    "A function is a reusable block of code that takes input, processes it, and returns an output, which is a key element of efficient programming.",
+    "Algorithmic complexity refers to the uncertainty of how much time or space a given algorithm will require to execute. The higher the complexity, the more resources it consumes, and vice versa.",
+    "Latency is the delay in processing or transmitting data over a network, which can affect the speed and responsiveness of systems.",
+    "An algorithm is a step-by-step procedure for solving a problem or performing a task in computing, designed to achieve a specific outcome.",
+    "The software development lifecycle involves stages like planning, design, coding, testing, and maintenance, which ensure that applications work effectively and meet user needs.",
+    "Modularization is the strategy of breaking down a program into smaller, manageable pieces (modules) to improve maintainability and reduce complexity.",
+    "Recursion is a programming technique where a function calls itself in order to solve smaller instances of the same problem, often with an evolving state."
 ];
+
 
 let currentPosition = -80;
 let speed = 5;
