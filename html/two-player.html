@@ -196,7 +196,7 @@
             border-radius: 10px;
             text-align: center;
             font-size: 24px;
-            color: #8B4513; /* Dark brown color */
+            color: #8B4513; 
             font-family: 'VT323', monospace;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
             width: 250px;
@@ -209,7 +209,7 @@
         }
 
         .input-box {
-            display: none;
+            display: none; 
             margin-top: 20px;
             padding: 20px;
             background-color: #FFD700; 
@@ -294,23 +294,21 @@
 
     <script>
         document.getElementById('generate-code').addEventListener('click', function () {
-            const code = 'GYAANI123';
+            const code = 'GYAANI123'; // Generate a dummy invite code
             document.getElementById('generated-code').textContent = `Invite Code: ${code}`;
             document.getElementById('invite-box').style.display = 'block'; 
-            document.getElementById('input-box').style.display = 'none'; 
+            document.getElementById('input-box').style.display = 'none';
         });
 
-        
         document.getElementById('enter-code').addEventListener('click', function () {
-            document.getElementById('input-box').style.display = 'block';
+            document.getElementById('input-box').style.display = 'block'; 
             document.getElementById('invite-box').style.display = 'none';
         });
 
-        
         document.getElementById('submit-code').addEventListener('click', function () {
             const enteredCode = document.getElementById('input-code').value;
             alert(`Entered Code: ${enteredCode}`);
-            document.getElementById('input-box').style.display = 'none';
+            document.getElementById('input-box').style.display = 'none'; 
         });
     </script>
 </body>

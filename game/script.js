@@ -1,7 +1,10 @@
+
 const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const clouds = document.querySelector('.clouds');
 const gameOver = document.querySelector('.game_over');
+const summaryScreen = document.querySelector('.summary-screen');
+const restartBtn = document.querySelector('#restart-btn');
 
 let currentPosition = -80; 
 let speed = 5; 
@@ -10,14 +13,16 @@ const speedIntervalTime = 500;
 let gameRunning = true;
 
 const jump = () => {
-  mario.classList.add('jump');
-
-  setTimeout(() => {
-    mario.classList.remove('jump');
-  }, 500);
-}
+  if (gameRunning) {
+    mario.classList.add('jump');
+    setTimeout(() => {
+      mario.classList.remove('jump');
+    }, 500);
+  }
+};
 
 pipe.style.animation = 'none';
+
 
 setInterval(() => {
   if (gameRunning) {
@@ -38,7 +43,7 @@ const movePipe = () => {
   
   pipe.style.right = `${currentPosition}px`;
   requestAnimationFrame(movePipe);
-}
+};
 
 const loop = setInterval(() => {
   const pipePosition = pipe.offsetLeft;
@@ -61,8 +66,18 @@ const loop = setInterval(() => {
     gameOver.textContent = "Game over";
 
     clearInterval(loop);
+
+
+    summaryScreen.style.display = 'block';
   }
 }, 10);
+
+
+restartBtn.addEventListener('click', () => {
+  summaryScreen.style.display = 'none';
+  location.reload(); 
+});
+
 
 requestAnimationFrame(movePipe);
 
