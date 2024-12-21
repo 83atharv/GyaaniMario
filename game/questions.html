@@ -177,7 +177,6 @@
             cursor: pointer;
         }
 
-        /* Popup styles */
         .popup-overlay {
             display: none;
             position: fixed;
@@ -247,7 +246,6 @@
             transform: scale(1.05);
         }
 
-        /* Dark Mode Styles */
         .dark-mode {
             background-color: #1e1e1e;
             color: #f4f4f4;
@@ -294,7 +292,6 @@
             color: #ff6600;
         }
 
-        /* Dark mode button */
         .dark-mode-button {
             position: fixed;
             top: 20px;
@@ -492,7 +489,6 @@
     </div>
 
     <script>
-        // Check localStorage on page load and set the theme
         window.onload = function() {
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.body.classList.add('dark-mode');
@@ -501,11 +497,9 @@
             }
         };
     
-        // Toggle dark mode
         function toggleDarkMode() {
             const isDarkModeEnabled = document.body.classList.toggle('dark-mode');
             
-            // Save preference to localStorage
             if (isDarkModeEnabled) {
                 localStorage.setItem('darkMode', 'enabled');
             } else {
@@ -513,7 +507,6 @@
             }
         }
     
-        // Correct answers (for quiz logic)
         const correctAnswers = {
             q1: 'b',
             q2: 'b',
@@ -527,7 +520,6 @@
             q10: 'b'
         };
     
-        // Function to show results
         function showResults() {
             let score = 0;
     
@@ -542,12 +534,10 @@
             document.getElementById('popup').style.display = 'flex';
         }
     
-        // Function to redo quiz
         function redoQuiz() {
             window.location.href = 'main-game.html';    
         }
     
-        // Function to change module
         function changeModule() {
             window.location.href = "../html/one-player.html";
         }

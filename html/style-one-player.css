@@ -1,18 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');  /* Import another font for smaller screens */
 
-/* Default font */
 * {
     font-family: 'VT323', monospace;
 }
 
 @media (max-width: 750px) {
-    /* Change font to 'Roboto' for screens smaller than 750px */
     * {
         font-family: 'Roboto', sans-serif;
     }
 
-    /* Remove .ground element on smaller screens */
     .ground {
         display: none;
     }
@@ -186,7 +183,6 @@ body {
     clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 
-/* Dark Mode Styles */
 .dark-mode {
     background-color: #1e1e1e;
     color: #f4f4f4;
