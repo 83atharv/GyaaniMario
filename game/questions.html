@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gyaani Mario Quiz</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #5c94fc;
+            color: white;
+            text-align: center;
+        }
+
+        * {
+            font-family: 'VT323', monospace;
+        }
+
+        .sky {
+            background: linear-gradient(#5c94fc, #8cb3fc);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 100px;
+        }
+
+        .clouds-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .cloud {
+            position: absolute;
+            width: 100px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            animation: float 20s infinite linear;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+        }
+
+        .cloud::before {
+            width: 50px;
+            height: 50px;
+            top: -20px;
+            left: 15px;
+        }
+
+        .cloud::after {
+            width: 40px;
+            height: 40px;
+            top: -15px;
+            right: 15px;
+        }
+
+        .cloud:nth-child(1) { top: 20%; left: -100px; }
+        .cloud:nth-child(2) { top: 40%; left: -80px; animation-delay: -10s; transform: scale(0.8); }
+        .cloud:nth-child(3) { top: 30%; left: -120px; animation-delay: -5s; transform: scale(1.2); }
+
+        @keyframes float {
+            from { transform: translateX(-100px); }
+            to { transform: translateX(calc(100vw + 100px)); }
+        }
+
+        .quiz-container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            border: 4px solid #e75a10;
+            margin-top: 40px;
+        }
+
+        .title {
+            font-size: 48px;
+            text-shadow: 4px 4px #2c5484;
+            animation: bounce 0.5s infinite alternate;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            background-color: #e75a10;
+            display: inline-block;
+            padding: 10px 30px;
+            border: 4px solid #943a0a;
+        }
+
+        .question {
+            background-color: rgba(231, 90, 16, 0.8);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: left;
+            font-size: 24px;
+            border: 3px solid #943a0a;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .option {
+            background-color: #5c94fc;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.1s;
+            border: 2px solid #2c5484;
+        }
+
+        .option:hover {
+            transform: scale(1.02);
+            background-color: #8cb3fc;
+        }
+
+        .submit-btn {
+            background-color: #e75a10;
+            color: white;
+            padding: 15px 30px;
+            font-size: 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #943a0a;
+            font-family: 'VT323', monospace;
+        }
+
+        .submit-btn:hover {
+            background-color: #943a0a;
+        }
+
+        .ground {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+            background-image: linear-gradient(
+                #b83f21 0%,
+                #b83f21 50%,
+                #9b2c12 50%,
+                #9b2c12 100%
+            );
+            background-size: 40px 40px;
+            z-index: 2;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.5);
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* Popup styles */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup {
+            background: linear-gradient(#5c94fc, #8cb3fc);
+            padding: 30px;
+            border-radius: 15px;
+            border: 4px solid #e75a10;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: popIn 0.3s ease-out;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .score-title {
+            font-size: 36px;
+            color: white;
+            text-shadow: 2px 2px #2c5484;
+            margin-bottom: 20px;
+        }
+
+        .score-display {
+            font-size: 72px;
+            color: #e75a10;
+            text-shadow: 3px 3px #943a0a;
+            margin: 20px 0;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .popup-btn {
+            background-color: #e75a10;
+            color: white;
+            padding: 15px 30px;
+            font-size: 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            border: 3px solid #943a0a;
+            font-family: 'VT323', monospace;
+            transition: transform 0.1s;
+        }
+
+        .popup-btn:hover {
+            background-color: #943a0a;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="sky">
+        <div class="clouds-container">
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+        </div>
+        
+        <h1 class="title">Super Mario Quiz!</h1>
+        
+        <form class="quiz-container">
+            <div class="question">
+                <p>1. What is Mario's full name?</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q1" value="a"> Mario Mario
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="b"> Mario Bros
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="c"> Mario Nintendo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="d"> Super Mario
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>2. What is Mario's occupation?</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q2" value="a"> Chef
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="b"> Plumber
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="c"> Carpenter
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="d"> Electrician
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>3. What color is Yoshi?</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q3" value="a"> Red
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="b"> Blue
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="c"> Green
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q3" value="d"> Yellow
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>4. What does Mario collect to gain extra lives?</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q4" value="a"> Stars
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="b"> Coins
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="c"> Green Mushrooms
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q4" value="d"> Flowers
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>5. Who is Mario's brother?</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q5" value="a"> Luigi
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5" value="b"> Wario
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5" value="c"> Waluigi
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q5" value="d"> Bowser
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>6. What is the name of Mario's dinosaur friend?</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q6" value="a"> Rex
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6" value="b"> Yoshi
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6" value="c"> Birdo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q6" value="d"> Koopa
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>7. What power does the Fire Flower give Mario?</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q7" value="a"> Flying
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7" value="b"> Invisibility
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7" value="c"> Throwing Fireballs
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q7" value="d"> Super Speed
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>8. What is the name of the princess Mario usually has to save?</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q8" value="a"> Princess Daisy
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8" value="b"> Princess Peach
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8" value="c"> Princess Rosalina
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q8" value="d"> Princess Zelda
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>9. What happens when Mario touches a Super Star?</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q9" value="a"> Becomes Invisible
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q9" value="b"> Becomes Invincible
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q9" value="c"> Gets Extra Life
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q9" value="d"> Grows Bigger
+                    </label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>10. What is Mario's main enemy?</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q10" value="a"> Bowser
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q10" value="b"> Wario
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q10" value="c"> King Boo
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q10" value="d"> Donkey Kong
+                    </label>
+                </div>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="showResults()">Submit Quiz!</button>
+        </form>
+        
+    </div>
+
+    <!-- Popup HTML -->
+    <div class="popup-overlay" id="popup">
+        <div class="popup">
+            <h2 class="score-title">Your Score</h2>
+            <div class="score-display" id="score">0/10</div>
+            <button class="popup-btn" onclick="redoQuiz()">Redo Module</button>
+            <button class="popup-btn" onclick="changeModule()">Change Module</button>
+        </div>
+    </div>
+
+    <script>
+        function showResults() {
+            document.getElementById('popup').style.display = 'flex';
+            
+            document.getElementById('score').textContent = "7/10";
+        }
+
+        function redoQuiz() {
+            window.location.href = 'main-game.html';    
+        }
+
+        function changeModule() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
