@@ -146,13 +146,11 @@ requestAnimationFrame(movePipe);
 
 document.addEventListener('keydown', jump);
 
-
 window.addEventListener('load', function () {
     if (localStorage.getItem('darkMode') === 'enabled') {
         document.body.classList.add('dark-mode');
     }
 });
-
 function toggleDarkMode() {
     const isDarkMode = document.body.classList.toggle('dark-mode');
     if (isDarkMode) {

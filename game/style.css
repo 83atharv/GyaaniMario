@@ -154,6 +154,7 @@
   background-color: #45c76b;
 }
 
+/* Dark Mode Styles */
 .dark-mode {
   background-color: #1e1e1e;
   color: #f4f4f4;
@@ -204,4 +205,51 @@
 
 .dark-mode-button:hover {
   background-color: #555;
+}
+
+
+.rotation-message {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rotation-message img {
+  width: 100px;
+  height: 100px;
+  margin: 20px 0;
+  animation: rotate 2s infinite linear;
+}
+
+@media screen and (max-width: 750px) {
+  .game-board {
+      display: none;
+  }
+  
+  .rotation-message {
+      display: flex;
+  }
+}
+
+/* Media query for screens above 750px */
+@media screen and (min-width: 751px) {
+  .game-board {
+      display: block;
+  }
+  
+  .rotation-message {
+      display: none;
+  }
 }
