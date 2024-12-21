@@ -1,0 +1,105 @@
+1. What is finance?
+Information: Finance is the study of managing money and investments. It involves budgeting, saving, investing, and analyzing markets to achieve financial goals.
+Question:
+ What is the study of managing money and investments called?
+A) Mathematics
+B) Finance
+C) Accounting
+Correct Answer: B) Finance
+==================================================================================
+2. What is a Budget?
+Information: A budget is a financial plan that outlines income and expenditures over a specified period.
+Question: What is the financial plan called that outlines income and expenses?
+A) Profit Report
+B) Budget
+C) Invoice
+Correct Answer: B) Budget
+==================================================================================
+3. Saving Money
+Information: Saving is the act of setting aside money for future use. It helps prepare for unexpected expenses and achieve financial goals.
+Question: What is it called when you set aside money for future use?
+A) Saving
+B) Spending
+C) Investing
+Correct Answer: A) Saving
+==================================================================================
+
+
+
+4. Types of Bank Accounts
+Information: A savings account allows you to deposit money, earn interest, and access funds easily, whereas a checking account is used for daily transactions like paying bills.
+Question: Which account is used for daily transactions like paying bills?
+A) Savings Account
+B) Checking Account
+C) Investment Account
+Correct Answer: B) Checking Account
+==================================================================================
+5. What is Credit?
+Information: Credit allows individuals to borrow money to make purchases with an agreement to pay back over time, often with interest.
+Question: What allows individuals to borrow money for purchases and pay back later?
+A) Loan
+B) Credit
+C) Saving
+Correct Answer: B) Credit
+================================================================
+6. Loans and Interest
+Information: A loan is borrowed money that must be repaid with interest, which is the fee for borrowing the money.
+Question: What is the fee you pay to borrow money called?
+A) Tax
+B) Interest
+C) Capital
+Correct Answer: B) Interest
+================================================================
+
+
+
+7. Risk and Return
+Information: Investment risk refers to the uncertainty of earning a return on an investment. The higher the risk, the higher the potential return, and vice versa.
+Question: What is the relationship between investment risk and return?
+A) Higher risk, lower return
+B) Higher risk, higher potential return
+C) Risk does not affect returns
+Correct Answer: B) Higher risk, higher potential return
+================================================================
+
+8. What is Inflation?
+Information: Inflation is the rise in prices over time, decreasing the purchasing power of money.
+Question: What happens to money during inflation?
+A) It gains value
+B) Its purchasing power decreases
+C) Its interest rate increases
+Correct Answer: B) Its purchasing power decreases   
+================================================================
+9. What is an Investment?
+Information: An investment is the act of allocating money in the hope that it will generate income or appreciate over time.
+Question: What is it called when you allocate money to generate income over time?
+A) Spending
+B) Saving
+C) Investing
+Correct Answer: C) Investing
+================================================================
+
+10. Stock Market
+Information: The stock market allows individuals to buy and sell shares of companies. Stock prices fluctuate based on company performance and market conditions.
+Question: What do you buy and sell on the stock market?
+A) Bonds
+B) Shares of Companies
+C) Savings
+Correct Answer: B) Shares of Companies
+================================================================
+11. What is Diversification?
+Information: Diversification is the strategy of spreading investments across different assets to reduce risk.
+Question: What strategy involves spreading investments to reduce risk?
+A) Specialization
+B) Diversification
+C) Consolidation
+Correct Answer: B) Diversification
+================================================================
+12. Compound Interest
+Information: Compound interest is the interest on both the initial principal and the accumulated interest from previous periods.
+Question: What is interest on both the initial investment and the accumulated interest called?
+A) Simple Interest
+B) Compound Interest
+C) Fixed Interest
+Correct Answer: B) Compound Interest
+================================================================

@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #5c94fc;
+    color: white;
+    text-align: center;
+    font-family: 'VT323', monospace;
+}
+
+.sky {
+    background: linear-gradient(#5c94fc, #8cb3fc);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.clouds-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.cloud {
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    animation: float 20s infinite linear;
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+.cloud::before {
+    width: 50px;
+    height: 50px;
+    top: -20px;
+    left: 15px;
+}
+
+.cloud::after {
+    width: 40px;
+    height: 40px;
+    top: -15px;
+    right: 15px;
+}
+
+.cloud:nth-child(1) {
+    top: 20%;
+    left: -100px;
+}
+
+.cloud:nth-child(2) {
+    top: 40%;
+    left: -80px;
+    transform: scale(0.8);
+    animation-delay: -10s;
+}
+
+.cloud:nth-child(3) {
+    top: 30%;
+    left: -120px;
+    transform: scale(1.2);
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    from { transform: translateX(-100px); }
+    to { transform: translateX(calc(100vw + 100px)); }
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    padding-top: 40px;
+}
+
+.title {
+    font-size: 8vw;
+    text-shadow: 4px 4px #2c5484;
+    animation: bounce 0.5s infinite alternate;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    background-color: #e75a10;
+    display: inline-block;
+    padding: 10px 20px;
+    border: 4px solid #943a0a;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+.map-container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    border: 4px solid #943a0a;
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.map-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+}
+
+.level {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: yellow;
+    border: 2px solid #ffd700;
+    width: 6vw;
+    height: 6vw;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 60px;
+    max-height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2vw;
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    font-weight: bold;
+    color: #000;
+    transition: background-color 0.3s ease;
+    z-index: 3;
+    left: var(--x);
+    top: var(--y);
+}
+
+.level:hover {
+    background-color: #ffd700;
+}
+
+.level:nth-child(1) { --x: 78%; --y: 93%; }
+.level:nth-child(2) { --x: 86%; --y: 82%; }
+.level:nth-child(3) { --x: 67%; --y: 76%; }
+.level:nth-child(4) { --x: 40%; --y: 74%; }
+.level:nth-child(5) { --x: 22%; --y: 70%; }
+.level:nth-child(6) { --x: 42%; --y: 63%; }
+.level:nth-child(7) { --x: 67%; --y: 59%; }
+.level:nth-child(8) { --x: 92%; --y: 57%; }
+.level:nth-child(9) { --x: 86%; --y: 47%; }
+.level:nth-child(10) { --x: 65%; --y: 37%; }
+.level:nth-child(11) { --x: 36%; --y: 32%; }
+.level:nth-child(12) { --x: 18%; --y: 26%; }
+.level:nth-child(13) { --x: 39%; --y: 19%; }
+.level:nth-child(14) { --x: 71%; --y: 15%; }
+.level:nth-child(15) { --x: 88%; --y: 6%; }
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10vh;
+    background-image: linear-gradient(
+        #b83f21 0%,
+        #b83f21 50%,
+        #9b2c12 50%,
+        #9b2c12 100%
+    );
+    background-size: 4vw 4vw;
+    z-index: 2;
+}
+
+.popup {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    display: none; 
+    z-index: 4;
+    pointer-events: none; 
+}
+
+@media (max-width: 1024px) {
+    .level {
+        font-size: 2vw;
+    }
+
+    .map-container {
+        width: 95%;
+    }
+
+    .title {
+        font-size: 10vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .level {
+        width: 8vw;
+        height: 8vw;
+        font-size: 2.5vw;
+    }
+
+    .title {
+        font-size: 12vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .level {
+        width: 10vw;
+        height: 10vw;
+        font-size: 3vw;
+    }
+
+    .title {
+        font-size: 15vw;
+    }
+}

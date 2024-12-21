@@ -1,5 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.game-board {
+  display: block;
+}
+
+.portrait-warning {
+  display: none;
+}
+
+@media (max-width: 750px) and (orientation: portrait) {
+  .game-board {
+    display: none;
+  }
+
+  .portrait-warning {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 20px;
+  }
+}
+
+
 *{
   margin: 0;
   padding: 0;
