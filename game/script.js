@@ -7,6 +7,18 @@ const restartBtn = document.querySelector('#restart-btn');
 const popup = document.querySelector('.popup');
 const nextBtn = document.querySelector('#next-btn');
 
+const jumpSound = new Audio('../sounds/Mario-jump-sound.mp3'); 
+jumpSound.load();
+
+const gameOverSound = new Audio('../sounds/game-over-sound2.mp3');
+gameOverSound.load();
+
+const backgroundMusic = new Audio('../sounds/aboveground_bgm.ogg');
+backgroundMusic.loop = true;  
+backgroundMusic.volume = 0.8; 
+
+
+
 const encouragingMessages = [
     "Finance is the study of managing money and investments. It involves budgeting, saving, investing, and analyzing markets to achieve financial goals.",
     "A budget is a financial plan that outlines income and expenditures over a specified period.",
@@ -31,14 +43,31 @@ let showingPopup = false;
 let currentMessageIndex = 0;
 let justCrossedPipe = false;
 
+// const jump = () => {
+//     if (gameRunning && !showingPopup) {
+//         mario.classList.add('jump');
+//         setTimeout(() => {
+//             mario.classList.remove('jump');
+//         }, 500);
+//     }
+// };
+
 const jump = () => {
     if (gameRunning && !showingPopup) {
-        mario.classList.add('jump');
-        setTimeout(() => {
-            mario.classList.remove('jump');
-        }, 500);
+      jumpSound.play();
+      mario.classList.add('jump');
+      setTimeout(() => {
+        mario.classList.remove('jump');
+      }, 500);
     }
-};
+  };
+  
+  document.addEventListener('keydown', () => {
+    if (!backgroundMusic.playing) {
+      backgroundMusic.play();
+    }
+  });
+  
 
 pipe.style.animation = 'none';
 
@@ -97,6 +126,8 @@ const loop = setInterval(() => {
     if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
         gameRunning = false;
 
+        gameOverSound.play();
+
         mario.style.animation = 'none';
         mario.style.bottom = `${marioPosition}px`;
 
@@ -110,6 +141,8 @@ const loop = setInterval(() => {
         gameOver.textContent = "Game over";
 
         clearInterval(loop);
+
+        backgroundMusic.pause();
 
         summaryScreen.style.display = 'block';
     }
