@@ -1,4 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');  /* Import another font for smaller screens */
+
+/* Default font */
+* {
+    font-family: 'VT323', monospace;
+}
+
+@media (max-width: 750px) {
+    /* Change font to 'Roboto' for screens smaller than 750px */
+    * {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    /* Remove .ground element on smaller screens */
+    .ground {
+        display: none;
+    }
+}
 
 body {
     margin: 0;
@@ -6,10 +24,6 @@ body {
     background-color: #5c94fc;
     color: white;
     text-align: center;
-}
-
-* {
-    font-family: 'VT323', monospace;
 }
 
 .sky {
@@ -170,4 +184,57 @@ body {
     height: 20px;
     background-color: white;
     clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #1e1e1e;
+    color: #f4f4f4;
+}
+
+.dark-mode .sky {
+    background: linear-gradient(#1e1e1e, #333333);
+}
+
+.dark-mode .title {
+    background-color: #333333;
+    border: 4px solid #333333;
+}
+
+.dark-mode .menu-item {
+    color: #f4f4f4;
+}
+
+.dark-mode .ground {
+    background-color: #4f4f4f;
+    background-image: none;
+}
+
+.dark-mode .mario-sprite {
+    filter: brightness(0) invert(1);
+}
+
+.dark-mode-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.dark-mode-button:hover {
+    background-color: #555;
+}
+
+.dark-mode .item-box,
+.dark-mode .input-box {
+    background-color: #555;
+    color: white;
+    border: 3px solid white;
 }

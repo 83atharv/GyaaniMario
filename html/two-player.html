@@ -19,6 +19,7 @@
             height: 100vh;
             overflow: hidden;
             flex-direction: column;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         * {
@@ -31,6 +32,7 @@
             height: 100%;
             position: relative;
             overflow: hidden;
+            transition: background 0.3s;
         }
 
         .clouds-container {
@@ -248,10 +250,70 @@
         .input-box button:hover {
             background-color: #a0522d;
         }
+
+        .dark-mode {
+            background-color: #1e1e1e;
+            color: #f4f4f4;
+        }
+
+        .dark-mode .sky {
+            background: linear-gradient(#1e1e1e, #333333);
+        }
+
+        .dark-mode .title {
+            background-color: #333333;
+            border: 4px solid #333333;
+        }
+
+        .dark-mode .menu-item {
+            color: #f4f4f4;
+        }
+
+        .dark-mode .ground {
+            background-color: #4f4f4f;
+            background-image: none;
+        }
+
+        .dark-mode .mario-sprite {
+            filter: brightness(0) invert(1);
+        }
+
+        .dark-mode-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+        .dark-mode .item-box,
+        .dark-mode .input-box
+        {
+            background-color: #555;
+            color: white;
+            border: 3px solid white; 
+        }
+
+
+        .dark-mode .submit-code{
+            background-color: #333333;
+            color: white;
+            border: 3px solid white; 
+        }
+        .dark-mode-button:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
     <div class="sky">
+        <button class="dark-mode-button" onclick="toggleDarkMode()">Dark Mode</button>
+
         <div class="stats">
             MARIO      WORLD      TIME<br/>
             000000     1-1        000
@@ -281,7 +343,7 @@
             <div class="input-box" id="input-box">
                 <h2>Enter Your Team Code</h2>
                 <input type="text" id="input-code" placeholder="Enter code here..." />
-                <button id="submit-code">Submit</button>
+                <button class="submit-code" id="submit-code">Submit</button>
             </div>
         </div>
         <div class="ground"></div>
@@ -293,6 +355,21 @@
     </audio>
 
     <script>
+        window.addEventListener('load', function () {
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        function toggleDarkMode() {
+            const isDarkMode = document.body.classList.toggle('dark-mode');
+            if (isDarkMode) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
         document.getElementById('generate-code').addEventListener('click', function () {
             const code = 'GYAANI123'; // Generate a dummy invite code
             document.getElementById('generated-code').textContent = `Invite Code: ${code}`;

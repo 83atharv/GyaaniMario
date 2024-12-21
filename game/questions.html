@@ -13,6 +13,7 @@
             background-color: #5c94fc;
             color: white;
             text-align: center;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         * {
@@ -25,6 +26,7 @@
             position: relative;
             overflow: hidden;
             padding-bottom: 100px;
+            transition: background 0.3s;
         }
 
         .clouds-container {
@@ -244,6 +246,72 @@
             background-color: #943a0a;
             transform: scale(1.05);
         }
+
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #1e1e1e;
+            color: #f4f4f4;
+        }
+
+        .dark-mode .sky {
+            background: linear-gradient(#1e1e1e, #333333);
+        }
+
+        .dark-mode .title {
+            background-color: #333333;
+            border: 4px solid #333333;
+        }
+
+        .dark-mode .question {
+            background-color: rgba(51, 51, 51, 0.8);
+            border: 3px solid #555;
+        }
+
+        .dark-mode .option {
+            background-color: #444;
+            border: 2px solid #666;
+        }
+
+        .dark-mode .option:hover {
+            background-color: #666;
+        }
+
+        .dark-mode .submit-btn {
+            background-color: #555;
+            border: 3px solid #666;
+        }
+
+        .dark-mode .submit-btn:hover {
+            background-color: #666;
+        }
+
+        .dark-mode .popup {
+            background: linear-gradient(#333, #444);
+            border: 4px solid #555;
+        }
+
+        .dark-mode .score-display {
+            color: #ff6600;
+        }
+
+        /* Dark mode button */
+        .dark-mode-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #e75a10;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .dark-mode-button:hover {
+            background-color: #943a0a;
+        }
     </style>
 </head>
 <body>
@@ -254,6 +322,8 @@
             <div class="cloud"></div>
         </div>
         
+        <button class="dark-mode-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
         <h1 class="title">Super Mario Quiz!</h1>
         
         <form class="quiz-container">
@@ -422,6 +492,28 @@
     </div>
 
     <script>
+        // Check localStorage on page load and set the theme
+        window.onload = function() {
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        };
+    
+        // Toggle dark mode
+        function toggleDarkMode() {
+            const isDarkModeEnabled = document.body.classList.toggle('dark-mode');
+            
+            // Save preference to localStorage
+            if (isDarkModeEnabled) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+    
+        // Correct answers (for quiz logic)
         const correctAnswers = {
             q1: 'b',
             q2: 'b',
@@ -434,28 +526,32 @@
             q9: 'c',
             q10: 'b'
         };
-
+    
+        // Function to show results
         function showResults() {
             let score = 0;
-
+    
             for (let i = 1; i <= 10; i++) {
                 const question = document.querySelector(`input[name="q${i}"]:checked`);
                 if (question && question.value === correctAnswers[`q${i}`]) {
                     score++;
                 }
             }
-
+    
             document.getElementById('score').textContent = `${score}/10`;
             document.getElementById('popup').style.display = 'flex';
         }
-
+    
+        // Function to redo quiz
         function redoQuiz() {
             window.location.href = 'main-game.html';    
         }
-
+    
+        // Function to change module
         function changeModule() {
             window.location.href = "../html/one-player.html";
         }
     </script>
+    
 </body>
 </html>

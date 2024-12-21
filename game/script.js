@@ -43,15 +43,6 @@ let showingPopup = false;
 let currentMessageIndex = 0;
 let justCrossedPipe = false;
 
-// const jump = () => {
-//     if (gameRunning && !showingPopup) {
-//         mario.classList.add('jump');
-//         setTimeout(() => {
-//             mario.classList.remove('jump');
-//         }, 500);
-//     }
-// };
-
 const jump = () => {
     if (gameRunning && !showingPopup) {
       jumpSound.play();
@@ -95,7 +86,6 @@ const movePipe = () => {
     const pipePosition = window.innerWidth - currentPosition;
     const marioPosition = mario.getBoundingClientRect();
 
-    // Check if Mario has just crossed the pipe
     if (pipePosition < marioPosition.left && !justCrossedPipe) {
         justCrossedPipe = true;
         showNextMessage();
@@ -155,3 +145,21 @@ restartBtn.addEventListener('click', () => {
 requestAnimationFrame(movePipe);
 
 document.addEventListener('keydown', jump);
+
+
+// Check if dark mode preference is saved in localStorage
+window.addEventListener('load', function () {
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+    }
+});
+
+// Toggle dark mode
+function toggleDarkMode() {
+    const isDarkMode = document.body.classList.toggle('dark-mode');
+    if (isDarkMode) {
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        localStorage.setItem('darkMode', 'disabled');
+    }
+}
