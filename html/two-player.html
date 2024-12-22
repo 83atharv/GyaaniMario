@@ -373,21 +373,90 @@
         }
 
         document.getElementById('generate-code').addEventListener('click', function () {
-            const code = 'GYAANI123'; // Generate a dummy invite code
-            document.getElementById('generated-code').textContent = `Invite Code: ${code}`;
-            document.getElementById('invite-box').style.display = 'block'; 
-            document.getElementById('input-box').style.display = 'none';
-        });
+        function generateTeamCode() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = '';
+            for (let i = 0; i < 6; i++) {
+                code += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return code;
+        }
+        
+        // Generate the team code
+        const teamCode = generateTeamCode();
+        
+        // Display the generated code in the invite box
+        document.getElementById('generated-code').textContent = `Invite Code: ${teamCode}`;
+        document.getElementById('invite-box').style.display = 'block'; 
+        document.getElementById('input-box').style.display = 'none'; // Hide the input box
+        
+        // Set a timeout to redirect after 10 seconds
+        setTimeout(function () {
+            window.location.href = '../public/index.html';  // Redirect to the new page
+        }, 10000); // 10 seconds delay
+    });
+
 
         document.getElementById('enter-code').addEventListener('click', function () {
             document.getElementById('input-box').style.display = 'block'; 
             document.getElementById('invite-box').style.display = 'none';
         });
 
+        document.getElementById('submit-code').addEventListener('click', function() {
+            // Get the team code entered by the user
+            const teamCode = document.getElementById('input-code').value.trim();
+
+            if (teamCode) {
+                // Show an alert to both users when the team code is entered
+                alert('You have successfully entered the team code! Both players will now start the game.');
+
+                // Redirect both users to the main game page after the alert is closed
+                setTimeout(() => {
+                    window.location.href = '../public/index.html';
+                }, 500); // Redirect after a small delay (500ms)
+            } else {
+                // If no team code is entered, show an alert to ask the user to enter a valid code
+                alert('Please enter a valid team code.');
+            }
+        });
+
+        document.getElementById('generate-code').addEventListener('click', function () {
+            socket.emit('createTeam');
+        });
+
+        // Submit the entered team code to join the team
         document.getElementById('submit-code').addEventListener('click', function () {
             const enteredCode = document.getElementById('input-code').value;
-            alert(`Entered Code: ${enteredCode}`);
-            document.getElementById('input-box').style.display = 'none'; 
+            socket.emit('joinTeam', enteredCode);
+        });
+
+        // Listen for the team code generated event from the server
+        socket.on('teamCreated', function (data) {
+            const code = data.teamCode;
+            document.getElementById('generated-code').textContent = `Invite Code: ${code}`;
+            document.getElementById('invite-box').style.display = 'block'; 
+            document.getElementById('input-box').style.display = 'none'; // Hide the input box
+            
+            // Alert the generator and redirect them to the game page
+            alert(`Your team code is: ${code}. You will now be redirected to the game!`);
+            setTimeout(() => {
+                window.location.href = '../public/index.html';
+            }, 10000); // Redirect after a small delay (500ms)
+        });
+
+        // Listen for when a player successfully joins a team
+        socket.on('teamJoined', function (data) {
+            alert(`You have successfully joined team: ${data.teamCode}`);
+        });
+
+        // Listen for when the second player joins the team
+        socket.on('playerJoined', function (data) {
+            alert('Another player has joined the team!');
+        });
+
+        // Error handling in case something goes wrong
+        socket.on('error', function (data) {
+            alert(`Error: ${data.message}`);
         });
     </script>
 </body>
