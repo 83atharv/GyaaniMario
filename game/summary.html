@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gyaani Mario - Summary</title>
+    <link rel="stylesheet" href="style-summary.css">
+</head>
+<body>
+    <div class="sky">
+        <button class="dark-mode-button" onclick="toggleDarkMode()">Dark Mode</button>
+        <div class="content">
+            <h1 class="title">Summary - Computer Science</h1>
+
+            <!-- Scrollable Section -->
+            <div class="scrollable-content">
+                <div class="summary-section">
+                    <h2>1. Computer Science</h2>
+                    <p>Computer Science is the study of algorithms, data structures, and computational systems. It involves coding, problem-solving, and analyzing systems to achieve computational goals.</p>
+                </div>
+                
+                <div class="summary-section">
+                    <h2>2. Program</h2>
+                    <p>A program is a set of instructions that a computer follows to perform a task or solve a problem over a specified period.</p>
+                </div>
+                
+                <div class="summary-section">
+                    <h2>3. Debugging</h2>
+                    <p>Debugging is the act of identifying and fixing errors in code to ensure a program runs as expected and functions properly.</p>
+                </div>
+                
+                <div class="summary-section">
+                    <h2>4. Data Structures & Algorithms</h2>
+                    <p>A data structure allows you to organize and store data in ways that optimize access and manipulation, whereas an algorithm is a step-by-step procedure to solve a problem.</p>
+                </div>
+                
+                <div class="summary-section">
+                    <h2>5. Virtualization</h2>
+                    <p>Virtualization allows developers to run multiple operating systems and applications on a single physical machine with isolated environments.</p>
+                </div>
+                
+                <div class="summary-section">
+                    <h2>6. Functions</h2>
+                    <p>A function is a reusable block of code that takes input, processes it, and returns an output, which is a key element of efficient programming.</p>
+                </div>
+                
+                <div class="summary-section">
+                    <h2>7. Algorithmic Complexity</h2>
+                    <p>Algorithmic complexity refers to the uncertainty of how much time or space a given algorithm will require to execute. The higher the complexity, the more resources it consumes, and vice versa.</p>
+                </div>
+                
+                <div class="summary-section">
+                    <h2>8. Latency</h2>
+                    <p>Latency is the delay in processing or transmitting data over a network, which can affect the speed and responsiveness of systems.</p>
+                </div>
+                
+                <div class="summary-section">
+                    <h2>9. Algorithms</h2>
+                    <p>An algorithm is a step-by-step procedure for solving a problem or performing a task in computing, designed to achieve a specific outcome.</p>
+                </div>
+                
+                <div class="summary-section">
+                    <h2>10. Software Development Lifecycle</h2>
+                    <p>The software development lifecycle involves stages like planning, design, coding, testing, and maintenance, which ensure that applications work effectively and meet user needs.</p>
+                </div>
+                
+                <div class="summary-section">
+                    <h2>11. Modularization</h2>
+                    <p>Modularization is the strategy of breaking down a program into smaller, manageable pieces (modules) to improve maintainability and reduce complexity.</p>
+                </div>
+                
+                <div class="summary-section">
+                    <h2>12. Recursion</h2>
+                    <p>Recursion is a programming technique where a function calls itself in order to solve smaller instances of the same problem, often with an evolving state.</p>
+                </div>
+            </div>
+        </div>
+    <button id="restart-btn" onclick="document.location.href='questions.html'">Done</button>
+        
+    </div>
+
+    <audio autoplay loop>
+        <source src="sounds/aboveground_bgm.ogg" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        window.addEventListener('load', function () {
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        function toggleDarkMode() {
+            const isDarkMode = document.body.classList.toggle('dark-mode');
+            if (isDarkMode) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+    </script>
+</body>
+</html>

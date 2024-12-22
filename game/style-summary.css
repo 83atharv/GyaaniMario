@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* General styling */
+* {
+    font-family: 'VT323', monospace;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #5c94fc;
+    color: white;
+    text-align: center;
+}
+
+/* Dark mode styling */
+.dark-mode {
+    background-color: #1e1e1e;
+    color: #f4f4f4;
+}
+
+.dark-mode .sky {
+    background: linear-gradient(#1e1e1e, #333333);
+}
+
+.dark-mode .title {
+    background-color: #333333;
+    border: 4px solid #333333;
+}
+
+.dark-mode .ground {
+    background-color: #4f4f4f;
+    background-image: none;
+}
+
+/* Sky and clouds */
+.sky {
+    background: linear-gradient(#5c94fc, #8cb3fc);
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Title styling */
+.title {
+    font-size: 5vw;
+    text-shadow: 4px 4px #2c5484;
+    animation: bounce 0.5s infinite alternate;
+    margin-bottom: 20px;
+    background-color: #e75a10;
+    display: inline-block;
+    padding: 20px 40px;
+    border: 4px solid #943a0a;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+/* Summary sections */
+.summary-section {
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid white;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    text-align: left;
+}
+
+.summary-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.summary-section p {
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+/* Dark mode button */
+.dark-mode-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.dark-mode-button:hover {
+    background-color: #555;
+}
+
+/* Ground styling */
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #78c850;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 6vw;
+        padding: 15px 30px;
+    }
+
+    .summary-section {
+        width: 90%;
+    }
+
+    .summary-section h2 {
+        font-size: 1.5em;
+    }
+
+    .summary-section p {
+        font-size: 1em;
+    }
+
+    .dark-mode-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .title {
+        font-size: 8vw;
+        padding: 10px 20px;
+    }
+
+    .summary-section {
+        width: 95%;
+    }
+
+    .summary-section h2 {
+        font-size: 1.3em;
+    }
+
+    .summary-section p {
+        font-size: 0.9em;
+    }
+
+    .dark-mode-button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+/* Scrollable content styling */
+.scrollable-content {
+    max-height: 70vh;
+    overflow-y: auto;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border: 2px solid white;
+}
+
+.scrollable-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 5px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+#restart-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #e41212;
+    color: white;
+    cursor: pointer;
+  }
+  
+  #restart-btn:hover {
+    background-color: #ff6161;
+  }
+
+  .dark-mode #restart-btn {
+    background-color: #e41212;
+    color: white;
+  }

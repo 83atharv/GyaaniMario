@@ -139,9 +139,9 @@ const loop = setInterval(() => {
     }
 }, 10);
 
-restartBtn.addEventListener('click', () => {
-    window.location.href = 'questions.html';
-});
+// restartBtn.addEventListener('click', () => {
+//     window.location.href = 'questions.html';
+// });
 
 requestAnimationFrame(movePipe);
 

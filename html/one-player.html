@@ -4,9 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gyaani Mario</title>
-    <link rel="icon" href="../game/images/mario.svg" type="image/x-icon">
-    <link rel="apple-touch-icon" href="../game/images/mario.svg">
     <link rel="stylesheet" href="style-one-player.css">
+    <style>
+        .new-module-button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .new-module-button:hover {
+            background-color: #0056b3;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .sky.dark-mode {
+            background-color: #181818;
+        }
+
+        .menu-item.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 3px solid #000;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 15px;
+            background-color: #ff5733; /* Mario-like Red */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 32px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-container label {
+            margin: 10px 0 5px 0;
+            font-weight: bold;
+        }
+
+        .form-input {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 2px solid #333;
+        }
+
+        .form-container button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .add-button {
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .add-button:hover {
+            background-color: #218838;
+        }
+
+        .content.hidden {
+            display: none;
+        }
+
+        .green-check {
+            color: green;
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-section label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-section input,
+        .form-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-section button {
+            width: 100%;
+        }
+
+        .module-list {
+            margin-top: 20px;
+        }
+
+        .module-list div {
+            margin: 10px 0;
+            padding: 15px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 8px;
+        }
+        .new-module-button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .new-module-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <div class="sky">
@@ -21,7 +198,7 @@
             <div class="cloud"></div>
             <div class="cloud"></div>
         </div>
-        <div class="content">
+        <div class="content" id="content">
             <h1 class="title">GYAANI MARIO</h1>
             <div class="menu">
                 <button class="menu-item" onclick="window.location.href='cs.html'">
@@ -41,10 +218,73 @@
                     Constitution
                 </button>
             </div>
+            <button class="menu-item" onclick="openModuleForm()">
+                <div class="selector"></div>
+                + Add Module
+            </button>
         </div>
         <div class="ground"></div>
     </div>  
-    
+
+    <div id="moduleModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModuleForm()">&times;</span>
+            <h2>Add a New Module</h2>
+            <label for="info1">Enter name</label>
+            <input type="text" id="info0" class="form-input" placeholder="Enter name of Module" required>
+
+            <div id="infoSection" class="form-section">
+                <h3>Add Information (12 pieces)</h3>
+                <div id="informationFields">
+                    <label for="info1">Information 1</label>
+                    <input type="text" id="info1" class="form-input" placeholder="Enter first piece of information" required>
+
+                    <label for="info2">Information 2</label>
+                    <input type="text" id="info2" class="form-input" placeholder="Enter second piece of information" required>
+
+                </div>
+                <button type="button" class="add-button" onclick="nextStep('questions')">+ Add Questions</button>
+            </div>
+
+            <div id="questionSection" class="form-section" style="display:none;">
+                <h3>Add Questions (up to 10)</h3>
+                <div id="questionsFields">
+                    <div id="question1">
+                        <label for="question1">Question 1</label>
+                        <input type="text" id="question1" class="form-input" placeholder="Enter question 1" required>
+
+                        <label for="answer1">Answer 1</label>
+                        <input type="text" id="answer1" class="form-input" placeholder="Enter correct answer 1" required>
+                    </div>
+
+                    <div id="question2">
+                        <label for="question2">Question 2</label>
+                        <input type="text" id="question2" class="form-input" placeholder="Enter question 2" required>
+
+                        <label for="answer2">Answer 2</label>
+                        <input type="text" id="answer2" class="form-input" placeholder="Enter correct answer 2" required>
+                    </div>
+
+                </div>
+                <button type="button" class="add-button" onclick="nextStep('summary')">+ Add Summary</button>
+            </div>
+
+            <div id="summarySection" class="form-section" style="display:none;">
+                <label for="summary">Enter Module Summary</label>
+                <textarea id="summary" class="form-input" placeholder="Enter module summary" required></textarea>
+                <button type="button" class="add-button" onclick="finishModule()">Finish Module</button>
+            </div>
+
+            <div id="successMessage" style="display:none;">
+                <h3>Module Added Successfully!</h3>
+                <p><span class="green-check">&#10004; Information</span></p>
+                <p><span class="green-check">&#10004; Questions</span></p>
+                <p><span class="green-check">&#10004; Summary</span></p>
+                <button class="add-button" onclick="redirectToMainPage()">Back to Main Page</button>
+            </div>
+        </div>
+    </div>
+
     <audio autoplay loop>
         <source src="sounds/aboveground_bgm.ogg" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -52,6 +292,17 @@
 
     <script>
         window.addEventListener('load', function () {
+            const newModule = JSON.parse(localStorage.getItem('newModule'));
+            if (newModule) {
+                const newButton = document.createElement('button');
+                newButton.classList.add('menu-item');
+                newButton.textContent = newModule.name;
+
+                document.querySelector('.menu').appendChild(newButton);
+
+                localStorage.removeItem('newModule');
+            }
+
             if (localStorage.getItem('darkMode') === 'enabled') {
                 document.body.classList.add('dark-mode');
             }
@@ -64,6 +315,74 @@
             } else {
                 localStorage.setItem('darkMode', 'disabled');
             }
+        }
+
+        function openModuleForm() {
+            document.getElementById('content').classList.add('hidden');
+            document.getElementById('moduleModal').style.display = "block";
+            document.querySelector('.ground').style.display = "none";
+        }
+
+        function closeModuleForm() {
+            window.history.back();
+        }
+
+        function nextStep(step) {
+            switch (step) {
+                case 'questions':
+                    document.getElementById('infoSection').style.display = 'none';
+                    document.getElementById('questionSection').style.display = 'block';
+                    break;
+                case 'summary':
+                    document.getElementById('questionSection').style.display = 'none';
+                    document.getElementById('summarySection').style.display = 'block';
+                    break;
+            }
+        }
+
+        window.addEventListener('load', function () {
+            const newModule = JSON.parse(localStorage.getItem('newModule'));
+
+            if (newModule) {
+                const newButton = document.createElement('button');
+                newButton.classList.add('menu-item');
+                
+                const selector = document.createElement('div');
+                selector.classList.add('selector');
+                newButton.appendChild(selector);
+
+                newButton.textContent = newModule.name;
+
+                document.querySelector('.menu').appendChild(newButton);
+                
+            }
+
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+function finishModule() {
+    const moduleName = document.getElementById('info0').value;
+    const summary = document.getElementById('summary').value;
+
+    if (!moduleName || !summary) {
+        alert('Please enter both module name and summary.');
+        return;
+    }
+
+    const moduleData = {
+        name: moduleName,
+        summary: summary
+    };
+    localStorage.setItem('newModule', JSON.stringify(moduleData));
+
+    document.getElementById('successMessage').style.display = 'block';
+    document.getElementById('summarySection').style.display = 'none';
+}
+
+        function redirectToMainPage() {
+            window.location.href = 'one-player.html';
         }
     </script>
 </body>
