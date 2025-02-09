@@ -50,5 +50,11 @@ We welcome contributions! If you'd like to improve the game, feel free to fork t
 This project is open-source and available under the [MIT License](LICENSE).
 
 ## 📬 Contact
-For any questions or suggestions, feel free to open an issue or contact us at **your.email@example.com**.
+For any questions or suggestions, feel free to open an issue or contact us at **atharvdixit06@gmail.com**.
+
+## Authors 
+- Om Jha (1MS23EI035)
+- Dhruv Gupta (1MS23CS059)
+- Krishna Kapale (1MS23CS082)
+- Atharv Dixit (1MS23IS155)
 
